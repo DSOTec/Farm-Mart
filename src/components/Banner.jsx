@@ -1,6 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Banner = () => {
+  const [searchQuery, setSearchQuery] = useState(''); // State for search input
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  // Handle search
+  const handleSearch = () => {
+    if (searchQuery.trim() !== '') {
+      navigate(`/farmitems?query=${searchQuery}`); // Navigate to Farmitems with query
+    }
+  };
+
   return (
     <>
       <div className="text-center m-4 pt-10 px-4">
@@ -13,14 +24,21 @@ const Banner = () => {
           </p>
         </div>
         <div className="flex flex-col md:flex-row mt-4 justify-center items-center gap-4">
-          <input
-            className="w-full md:w-1/2 leading-10 p-[10px] bg-[rgba(255,255,255,0.3)] rounded-[20px] text-black"
-            type="search"
-            placeholder="Search for farm produces..."
-          />
-          <button className="  bg-[#FFBD00] w-[20%] md:relative right-[13%] w-[100px]  text-black p-[10px] rounded-[20px] cursor-pointer">
-            Search
-          </button>
+          <div className="flex w-full md:w-1/2 bg-[rgba(255,255,255,0.3)] rounded-[20px] overflow-hidden">
+            <input
+              className="flex-grow leading-10 p-[10px] text-black bg-transparent outline-none"
+              type="search"
+              placeholder="Search for farm produces..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button
+              className="bg-[#FFBD00] text-black px-4 md:px-6 rounded-none cursor-pointer"
+              onClick={handleSearch} // Trigger search on button click
+            >
+              Search
+            </button>
+          </div>
         </div>
       </div>
     </>

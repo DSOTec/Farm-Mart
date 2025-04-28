@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Banner from './components/Banner.jsx';
 import Footer from './components/Footer.jsx';
+import Farmitems from './Pages/Farmitems.jsx'; // Import Farmitems component
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
         <Banner />
       </div>
       <Routes>
-        <Route path="/" element="" />
+         {/* <Route path="/" element={<Banner />} />
+        <Route path="/farmitems" element={<Farmitems />} />Add route for Farmitems */}
       </Routes>
       <Footer />
     </>
