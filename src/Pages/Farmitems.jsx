@@ -36,7 +36,7 @@ const Farmitems = () => {
                   Remaining: {item.remaining}
                 </p>
                 <p className="text-gray-800 font-bold mb-4">
-                  Price: ${item.price.toFixed(2)}
+                  Price: ₦{item.price.toFixed(2)}
                 </p>
                 <button className="bg-[#4CAF50] text-white px-4 py-2 rounded-lg hover:bg-[#45a049]">
                   Add to Cart

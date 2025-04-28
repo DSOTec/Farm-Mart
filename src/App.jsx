@@ -13,8 +13,8 @@ const App = () => {
         <Banner />
       </div>
       <Routes>
-         {/* <Route path="/" element={<Banner />} />
-        <Route path="/farmitems" element={<Farmitems />} />Add route for Farmitems */}
+        {/*  <Route path="/" element={<Banner />} />*/}
+        <Route path="/farmitems" element={<Farmitems />} /> Add route for Farmitems 
       </Routes>
       <Footer />
     </>

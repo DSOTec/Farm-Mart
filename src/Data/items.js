@@ -1,53 +1,59 @@
 import React from 'react'
+import tomatoImage from '../assets/items/tomato.png';
+import pepperImage from '../assets/items/classic red pepper.png';
+import afrospicyImage from '../assets/items/afrospicyredpepper.png';
+import redImage from '../assets/items/red ball pepper.png';
+import spicyImage from '../assets/items/spicy pepper.png';
+import bisolaImage from '../assets/items/Bisola pepper.png'; 
 
 const items = [
   {
     id: 1,
-    image: 'https://via.placeholder.com/150', // Replace with actual image URL
-    title: 'Fresh Tomatoes',
-    farmer: 'John Doe',
-    remaining: 50, // Number of items left
-    price: 2.5, // Price in dollars
+    image: tomatoImage, // 
+    title: 'Farm Fresh Organic Pepper',
+    farmer: 'Abo Farms',
+    remaining: 40, // Number of items left
+    price: 17300, // 
   },
   {
     id: 2,
-    image: 'https://via.placeholder.com/150',
-    title: 'Organic Carrots',
-    farmer: 'Jane Smith',
-    remaining: 30,
-    price: 3.0,
+    image: pepperImage,
+    title: 'Classic Red Pepper',
+    farmer: 'Alhaji Farms',
+    remaining: 50,
+    price: 7500,
   },
   {
     id: 3,
-    image: 'https://via.placeholder.com/150',
-    title: 'Free-Range Eggs (Dozen)',
-    farmer: 'Emily Johnson',
+    image: afrospicyImage,
+    title: 'Afro Spicy Red Pepper',
+    farmer: 'Ruka Farms',
     remaining: 20,
-    price: 5.0,
+    price: 17500,
   },
   {
     id: 4,
-    image: 'https://via.placeholder.com/150',
-    title: 'Fresh Milk (1L)',
-    farmer: 'Michael Brown',
-    remaining: 15,
-    price: 4.0,
+    image: spicyImage,
+    title: 'Spicy Pepper',
+    farmer: 'Spicy Farms',
+    remaining: 100,
+    price: 17250,
   },
   {
     id: 5,
-    image: 'https://via.placeholder.com/150',
-    title: 'Green Apples (1kg)',
-    farmer: 'Sarah Wilson',
-    remaining: 40,
-    price: 3.5,
+    image: redImage,
+    title: 'Red Ball Pepper (Shombo)',
+    farmer: 'Alhaji Farms',
+    remaining: 50,
+    price: 7250,
   },
   {
     id: 6,
-    image: 'https://via.placeholder.com/150',
-    title: 'Potatoes (1kg)',
-    farmer: 'David Lee',
-    remaining: 60,
-    price: 2.0,
+    image: bisolaImage,
+    title: 'Bisola Pepper (Rodo)',
+    farmer: 'Bisola Farms',
+    remaining: 65,
+    price: 17100,
   },
   {
     id: 7,
@@ -55,7 +61,7 @@ const items = [
     title: 'Spinach (Bunch)',
     farmer: 'Anna Davis',
     remaining: 25,
-    price: 1.5,
+    price: 150,
   },
   {
     id: 8,
@@ -63,7 +69,7 @@ const items = [
     title: 'Sweet Corn (Each)',
     farmer: 'Chris Martinez',
     remaining: 35,
-    price: 1.0,
+    price: 100,
   },
   {
     id: 9,
@@ -71,7 +77,7 @@ const items = [
     title: 'Strawberries (250g)',
     farmer: 'Laura Garcia',
     remaining: 10,
-    price: 4.5,
+    price: 450,
   },
   {
     id: 10,
@@ -79,8 +85,8 @@ const items = [
     title: 'Honey (500g)',
     farmer: 'James Anderson',
     remaining: 5,
-    price: 6.0,
+    price: 600,
   },
 ];
 
-export default items
+export default items;
