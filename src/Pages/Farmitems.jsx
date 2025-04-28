@@ -14,7 +14,7 @@ const Farmitems = () => {
 
   return (
     <>
-      <div className="p-4">
+      <div className="pl-[5%] pr-[4%] pt-[2%]">
         <h1 className="text-2xl font-bold mb-4 text-center">
           Search Results for "{searchQuery}"
         </h1>
@@ -28,7 +28,7 @@ const Farmitems = () => {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-40 object-cover rounded-md mb-4"
+                  className="w-90 h-40 object-cover rounded-md mb-4"
                 />
                 <h2 className="text-lg font-bold mb-2">{item.title}</h2>
                 <p className="text-gray-600 mb-2">Farmer: {item.farmer}</p>
