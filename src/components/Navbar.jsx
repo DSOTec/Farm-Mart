@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
     <>
-    <div className='pl-[5%] pr-[4%] pt-[2%] bg-[#4CAF50]'>
+    <div className='pl-[5%] pr-[4%] pt-[2%] bg-[]'>
       <div className="relative flex items-center  h-[60px]">
         {/* Logo Section */}
         <div className="absolute left-4">
@@ -15,7 +15,7 @@ const Navbar = () => {
 
         {/* Centered List Items */}
         <div className="flex justify-center w-full">
-          <ul className="flex list-none gap-8 font-[Poppins] text-center border-[1px] rounded-[100px] shadow-[0px_4px_10px_rgba(118, 203, 121, 0.6)]">
+          <ul className="flex list-none gap-8 font-[Poppins] bg-[rgba(0, 0, 0, 0.37)] text-center border-[1px] border-white  rounded-[100px] ">
             <li className="text-white p-[10px]">
               <Link>Categories</Link>
             </li>
