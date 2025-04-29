@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import categories from '../assets/categories.png'
+import profile from '../assets/profile.png'
+import support from '../assets/support.png'
 
 const Navbar = () => {
   return (
     <>
+    <div className=' bg-[white] md:bg-[#00000000]'>
       <div className="pl-[5%] pr-[4%] pt-[2%] ">
         <div className="relative flex items-center justify-between h-[60px]">
           {/* Logo Section */}
           <div className="absolute left-4">
-            <Link className="font-[montagu] font-[700] text-[28px] text-white" to="">
+            <Link className="font-[montagu] font-[700] text-[18px] text-black md:text-white md:text-[28px]" to="">
               Farm Mart
             </Link>
           </div>
@@ -29,12 +33,21 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex md:hidden absolute right-4">
-            <button className="text-white text-2xl">
-              <i className="fas fa-bars"></i> {/* Replace with an icon library or SVG */}
+          <div className="flex md:hidden absolute right-8">
+            <button className="text-white text-2xl p-3 cursor-pointer hover:bg-[#796116] rounded-[20px] ">
+              <img className="w-[20px] " src={categories} /> {/* Replace with an icon library or SVG */}
             </button>
+            <button className="text-white text-2xl p-3 cursor-pointer hover:bg-[#796116] rounded-[20px] ">
+              <img className="w-[20px] " src={profile} /> {/* Replace with an icon library or SVG */}
+            </button>
+            <button className="text-white text-2xl p-3 cursor-pointer hover:bg-[#796116] rounded-[20px] ">
+              <img className="w-[20px] " src={support} /> {/* Replace with an icon library or SVG */}
+            </button>
+
+
           </div>
         </div>
+      </div>
       </div>
     </>
   );
