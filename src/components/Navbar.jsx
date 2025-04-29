@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import categories from '../assets/categories.png'
 import profile from '../assets/profile.png'
 import support from '../assets/support.png'
+import LoginPage from '../Pages/LoginPage.jsx';
+import SignupPage from '../Pages/SignupPage.jsx';
 
 const Navbar = () => {
   return (
@@ -23,8 +25,17 @@ const Navbar = () => {
               <li className="text-white p-[10px]">
                 <Link>Categories</Link>
               </li>
-              <li className="text-white p-[10px]">
-                <Link>Sign Up/Login</Link>
+              <li className="text-white p-[10px] relative group">
+                <Link className="cursor-pointer">Sign Up/Login</Link>
+                {/* Dropdown Menu */}
+                <ul className="absolute left-0 mt-2 hidden group-hover:block bg-[rgba(255,255,255,0.8)] text-white rounded-lg shadow-lg">
+                  <li className="p-2 hover:bg-[#4CAF50] rounded-t-lg">
+                    <Link to="/login">Login</Link> {/* Link to LoginPage */}
+                  </li>
+                  <li className="p-2 hover:bg-[#4CAF50] rounded-b-lg">
+                    <Link to="/signup">Sign Up</Link> {/* Link to SignupPage */}
+                  </li>
+                </ul>
               </li>
               <li className="text-white p-[10px]">
                 <Link>Support</Link>

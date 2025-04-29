@@ -7,6 +7,8 @@ import Farmitems from './Pages/Farmitems.jsx';
 import bg1 from './assets/bg.webp';
 import bg2 from './assets/bg2.webp';
 import bg3 from './assets/bg3.webp';
+import LoginPage from './Pages/LoginPage.jsx'
+import SignupPage from './Pages/SignupPage'
 
 const App = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0); // State for the current image index
@@ -22,7 +24,9 @@ const App = () => {
 
   return (
     <>
-      <div
+      
+      <Routes>
+       <Route path="/" element={<div
         className={`bg-cover bg-center h-[90vh]`}
         style={{
           backgroundImage: `linear-gradient(rgba(51,51,51,0.7),rgba(0,0,0,0.5)), url(${images[currentImageIndex]})`,
@@ -30,10 +34,10 @@ const App = () => {
       >
         <Navbar />
         <Banner />
-      </div>
-      <Routes>
-        {/*<Route path="/" element={<Banner />} />*/}
+      </div>} />
         <Route path="/farmitems" element={<Farmitems />} /> {/* Add route for Farmitems */}
+        <Route path="/login" element={<LoginPage />} /> {/* Login route */}
+        <Route path="/signup" element={<SignupPage />} /> {/* Signup route */}
       </Routes>
       <Footer />
     </>
