@@ -43,16 +43,16 @@ const LoginPage = () => {
         </button>
 
         <Link
-          className="font-[montagu] font-[700] text-[18px] text-[#000000] md:text-[28px] block text-center mb-4"
+          className="font-[montagu] font-[700] text-[18px] text-[#09865655] md:text-[28px] block text-center mb-4"
           to="/"
         >
           Farm Mart
         </Link>
-        <h2 className="text-2xl font-bold text-center mb-6">Log In</h2>
+        <h2 className="text-2xl text-[#09865655] font-bold text-center mb-6">Log In</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email Input */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="email" className="block text-sm font-medium text-[#698655]">
               Email
             </label>
             <input
@@ -69,7 +69,7 @@ const LoginPage = () => {
 
           {/* Password Input */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="block text-sm font-medium text-[#698655]">
               Password
             </label>
             <input

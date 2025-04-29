@@ -44,16 +44,16 @@ const SignupPage = () => {
         </button>
 
         <Link
-          className="font-[montagu] font-[700] text-[18px] text-[#000000] md:text-[28px] block text-center mb-4"
+          className="font-[montagu] font-[700] text-[18px] text-[#698655] md:text-[28px] block text-center mb-4"
           to="/"
         >
           Farm Mart
         </Link>
-        <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
+        <h2 className="text-2xl text-[#698655] font-bold text-center mb-6">Sign Up</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Name Input */}
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="name" className="block  text-sm font-medium text-[#698655]">
               Name
             </label>
             <input
@@ -70,7 +70,7 @@ const SignupPage = () => {
 
           {/* Email Input */}
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="email" className="block text-sm font-medium text-[#698655]">
               Email
             </label>
             <input
@@ -87,7 +87,7 @@ const SignupPage = () => {
 
           {/* Password Input */}
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="block text-sm font-medium text-[#698655]">
               Password
             </label>
             <input
