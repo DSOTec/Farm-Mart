@@ -15,7 +15,20 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login submitted:', formData);
+
+    // Retrieve user data from localStorage
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+
+    if (
+      storedUser &&
+      storedUser.email === formData.email &&
+      storedUser.password === formData.password
+    ) {
+      console.log('Login successful');
+      navigate('/dashboard'); // Navigate to Dashboard
+    } else {
+      alert('Invalid email or password');
+    }
   };
 
   return (

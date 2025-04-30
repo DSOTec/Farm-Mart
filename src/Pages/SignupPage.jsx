@@ -16,7 +16,11 @@ const SignupPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+
+    // Save user data to localStorage
+    localStorage.setItem('user', JSON.stringify(formData));
+    alert('Signup successful! You can now log in.');
+    navigate('/login'); // Redirect to login page
   };
 
   return (
