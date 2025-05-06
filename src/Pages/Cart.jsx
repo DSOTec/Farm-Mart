@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa'; // Import the back arrow icon
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -59,8 +60,21 @@ const Cart = () => {
     navigate('/payment', { state: { grandTotal } }); // Pass grand total to PaymentPage
   };
 
+  // Handle Back Navigation
+  const goBack = () => {
+    navigate(-1); // Navigate to the previous page
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Back Arrow */}
+      <button
+        onClick={goBack} // Navigate to the previous page
+        className="flex items-center text-gray-700 hover:text-green-600 mb-4"
+      >
+        <FaArrowLeft className="mr-2" /> Continue Shopping
+      </button>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Section: Cart Items */}
         <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg">
