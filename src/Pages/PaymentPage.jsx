@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // Import useLocation and useNavigate
+import { useLocation } from 'react-router-dom'; // Import useLocation
 
 const PaymentPage = () => {
   const location = useLocation(); // Access state passed from Cart
-  const navigate = useNavigate(); // Initialize navigate
-  const { totalPrice } = location.state || { totalPrice: 0 }; // Default to 0 if no state is passed
+  const { grandTotal } = location.state || { grandTotal: 0 }; // Default to 0 if no state is passed
 
   const [formData, setFormData] = useState({
     email: '',
@@ -31,7 +30,7 @@ const PaymentPage = () => {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h3 className="text-2xl font-bold text-center mb-6">Payment Page</h3>
-        <p className="text-center text-gray-700 mb-4">Total Amount: ₦{totalPrice}</p>
+        <p className="text-center text-gray-700 mb-4">Grand Total: ₦{grandTotal}</p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
@@ -53,15 +52,9 @@ const PaymentPage = () => {
             type="submit"
             className="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300"
           >
-            Pay ₦{totalPrice}
+            Pay ₦{grandTotal}
           </button>
         </form>
-        <button
-          onClick={() => navigate('/cart')}
-          className="w-full bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-600 transition duration-300 mt-4"
-        >
-          Back to Cart
-        </button>
       </div>
     </div>
   );

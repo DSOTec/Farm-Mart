@@ -11,6 +11,7 @@ import LoginPage from './Pages/LoginPage.jsx'
 import SignupPage from './Pages/SignupPage'
 import Dashboard from './Pages/Dashboard.jsx';
 import Cart from './Pages/Cart';
+import PaymentPage from './Pages/PaymentPage.jsx';
 
 
 
@@ -47,6 +48,7 @@ const App = () => {
       </div>} />
         <Route path="/farmitems" element={<Farmitems />} /> {/* Add route for Farmitems */}
         <Route path="/cart" element={<Cart />} /> {/* Define the Cart route */}
+        <Route path="/payment" element={<PaymentPage />} /> {/* Define the PaymentPage route */}
         <Route path="/login" element={<LoginPage />} /> {/* Login route */}
         <Route path="/signup" element={<SignupPage />} /> {/* Signup route */}
         <Route path="/dashboard" element={<Dashboard />} />
