@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // Import useLocation and useNavigate
-import { FaArrowLeft } from 'react-icons/fa'; // Import back arrow icon
+import { useNavigate } from 'react-router-dom';
 
-const PaymentPage = () => {
-  const location = useLocation(); // Access state passed from Cart
-  const navigate = useNavigate(); // For navigation
-  const { grandTotal } = location.state || { grandTotal: 0 }; // Default to 0 if no state is passed
-
+const PaymentPage = ({ isOpen, onClose, grandTotal }) => {
   const [formData, setFormData] = useState({
     email: '',
     firstName: '',
@@ -18,6 +13,7 @@ const PaymentPage = () => {
   });
 
   const [paymentMethod, setPaymentMethod] = useState('Card Payment'); // Default payment method
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,27 +24,34 @@ const PaymentPage = () => {
     console.log('Payment Details:', formData);
     alert('Payment processed successfully!');
     localStorage.removeItem('cart'); // Clear the cart
+    onClose(); // Close the modal
+    navigate('/success'); // Navigate to the SuccessPage
   };
 
-  const goBack = () => {
-    navigate(-1); // Navigate to the previous page
-  };
+  if (!isOpen) return null; // Don't render the modal if it's not open
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
-        {/* Back Arrow */}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl relative">
+        {/* Close Button */}
         <button
-          onClick={goBack}
-          className="flex items-center text-gray-700 hover:text-green-600 mb-4"
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-700 hover:text-red-600"
         >
-          <FaArrowLeft className="mr-2" /> Back
+          ✕
         </button>
 
+        {/* Payment Content */}
         <h3 className="text-2xl font-bold text-center mb-6">Payment Page</h3>
-        <p className="text-center text-gray-700 mb-4 text-lg font-semibold">
-          Total Payments: ₦{grandTotal.toLocaleString()}
+        <p className="text-left p-1 text-gray-700 mb-1 text-lg font-semibold">
+          Total Payments
         </p>
+        <input
+          type="text"
+          value={`₦${grandTotal.toLocaleString()}`}
+          readOnly
+          className="text-left p-[10px] text-gray-700 mb-4 text-lg font-semibold bg-transparent border-1 w-full focus:outline-none"
+        />
 
         {/* Payment Method Selection */}
         <div className="flex justify-center gap-4 mb-6">

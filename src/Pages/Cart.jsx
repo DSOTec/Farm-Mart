@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft } from 'react-icons/fa'; // Import the back arrow icon
+import PaymentPage from './PaymentPage';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [promoCode, setPromoCode] = useState('');
   const [discount, setDiscount] = useState(0);
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
   const navigate = useNavigate();
 
   // Retrieve cart items from localStorage when the component mounts
@@ -57,7 +59,7 @@ const Cart = () => {
 
   // Handle Proceed to Checkout
   const handleCheckout = () => {
-    navigate('/payment', { state: { grandTotal } }); // Pass grand total to PaymentPage
+    setIsPaymentOpen(true);
   };
 
   // Handle Back Navigation
@@ -77,51 +79,55 @@ const Cart = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Section: Cart Items */}
-        <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg">
+        <div className="lg:col-span-2 bg-white p-4 lg:p-6 rounded-lg shadow-lg">
           <h1 className="text-2xl font-bold mb-6">My Cart</h1>
           {cartItems.length > 0 ? (
             <>
-              <table className="w-full border-collapse border border-gray-300 mb-6">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="border border-gray-300 px-4 py-2 text-left">Product Details</th>
-                    <th className="border border-gray-300 px-4 py-2 text-center">Quantity</th>
-                    <th className="border border-gray-300 px-4 py-2 text-center">Price (₦)</th>
-                    <th className="border border-gray-300 px-4 py-2 text-center">Total</th>
-                    <th className="border border-gray-300 px-4 py-2 text-center">Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cartItems.map((item) => (
-                    <tr key={item.id}>
-                      <td className="border border-gray-300 px-4 py-2">{item.title}</td>
-                      <td className="border border-gray-300 px-4 py-2 text-center">
-                        <input
-                          type="number"
-                          min="1"
-                          value={item.quantity}
-                          onChange={(e) =>
-                            handleQuantityChange(item.id, parseInt(e.target.value, 10))
-                          }
-                          className="w-16 border border-gray-300 rounded-lg px-2 py-1 text-center"
-                        />
-                      </td>
-                      <td className="border border-gray-300 px-4 py-2 text-center">₦{item.price}</td>
-                      <td className="border border-gray-300 px-4 py-2 text-center">
-                        ₦{item.price * item.quantity}
-                      </td>
-                      <td className="border border-gray-300 px-4 py-2 text-center">
-                        <button
-                          onClick={() => handleRemoveItem(item.id)}
-                          className="text-red-500 hover:underline"
-                        >
-                          Remove
-                        </button>
-                      </td>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse border border-gray-300 mb-6">
+                  <thead>
+                    <tr className="bg-gray-100">
+                      <th className="border border-gray-300 px-4 py-2 text-left">Product Details</th>
+                      <th className="border border-gray-300 px-4 py-2 text-center">Quantity</th>
+                      <th className="border border-gray-300 px-4 py-2 text-center hidden md:table-cell">Price (₦)</th>
+                      <th className="border border-gray-300 px-4 py-2 text-center hidden md:table-cell">Total</th>
+                      <th className="border border-gray-300 px-4 py-2 text-center">Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {cartItems.map((item) => (
+                      <tr key={item.id}>
+                        <td className="border border-gray-300 px-4 py-2">{item.title}</td>
+                        <td className="border border-gray-300 px-4 py-2 text-center">
+                          <input
+                            type="number"
+                            min="1"
+                            value={item.quantity}
+                            onChange={(e) =>
+                              handleQuantityChange(item.id, parseInt(e.target.value, 10))
+                            }
+                            className="w-16 border border-gray-300 rounded-lg px-2 py-1 text-center"
+                          />
+                        </td>
+                        <td className="border border-gray-300 px-4 py-2 text-center hidden md:table-cell">
+                          ₦{item.price}
+                        </td>
+                        <td className="border border-gray-300 px-4 py-2 text-center hidden md:table-cell">
+                          ₦{item.price * item.quantity}
+                        </td>
+                        <td className="border border-gray-300 px-4 py-2 text-center">
+                          <button
+                            onClick={() => handleRemoveItem(item.id)}
+                            className="text-red-500 hover:underline"
+                          >
+                            Remove
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
               <h2 className="text-right text-lg font-bold">Cart Total: ₦{cartTotal}</h2>
             </>
           ) : (
@@ -130,7 +136,7 @@ const Cart = () => {
         </div>
 
         {/* Right Section: Order Summary */}
-        <div className="bg-green-100 p-6 rounded-lg shadow-lg">
+        <div className="bg-green-100 p-4 lg:p-6 rounded-lg shadow-lg">
           <h2 className="text-xl font-bold mb-4">Order Summary</h2>
           <div className="mb-4">
             <p className="flex justify-between">
@@ -179,6 +185,13 @@ const Cart = () => {
           </button>
         </div>
       </div>
+
+      {/* Payment Modal */}
+      <PaymentPage
+        isOpen={isPaymentOpen}
+        onClose={() => setIsPaymentOpen(false)}
+        grandTotal={grandTotal}
+      />
     </div>
   );
 };

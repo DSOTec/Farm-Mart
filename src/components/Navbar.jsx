@@ -49,31 +49,111 @@ const Navbar = () => {
             {/* Centered List Items */}
             <div className="hidden md:flex justify-center w-full">
               <ul className="flex list-none gap-8 font-[Poppins] bg-[rgba(0, 0, 0, 0.37)] text-center border-[1px] border-white rounded-[100px] shadow-lg px-4 py-2">
-                <li className="text-white p-[10px]">
-                  <Link>Categories</Link>
-                </li>
                 <li className="text-white p-[10px] relative group">
-                  <button
-                    className="cursor-pointer"
-                    onClick={handleLoginRedirect} // Redirect based on role
-                  >
-                    {userRole ? `Welcome, ${userRole}` : 'Sign Up/Login'}
-                  </button>
-                  {/* Dropdown Menu */}
-                  {!userRole && (
-                    <ul className="absolute left-3 w-[100px] mt-2 hidden group-hover:block bg-[rgba(255,255,255,0.8)] text-white rounded-lg shadow-lg">
-                      <li className="p-2 hover:bg-[#FFBD00] rounded-t-lg">
-                        <Link to="/login">Log In</Link>
+                  <button className="cursor-pointer">Categories</button>
+                  {/* Main Dropdown */}
+                  <div className="absolute left-0 mt-2 hidden group-hover:block bg-white text-black rounded-lg shadow-lg w-[220px]">
+                    <ul className="space-y-2 p-4">
+                      {/* Vegetables */}
+                      <li className="flex items-center justify-between hover:text-green-600 cursor-pointer group">
+                        <span className="font-bold text-[#A68A00]">Vegetables</span>
+                        <span>&gt;</span>
+                        {/* Submenu */}
+                        <div className="absolute left-full top-0 hidden group-hover:block bg-white text-black rounded-lg shadow-lg w-[400px] p-4">
+                          <div className="grid grid-cols-3 gap-4">
+                            <div className="text-center">
+                              <img src="/path-to-pepper.png" alt="Pepper" className="w-16 h-16 mx-auto rounded-full" />
+                              <p className="text-sm mt-2">Pepper</p>
+                            </div>
+                            <div className="text-center">
+                              <img src="/path-to-onions.png" alt="Onions" className="w-16 h-16 mx-auto rounded-full" />
+                              <p className="text-sm mt-2">Onions</p>
+                            </div>
+                            <div className="text-center">
+                              <img src="/path-to-spinach.png" alt="Spinach Leaf" className="w-16 h-16 mx-auto rounded-full" />
+                              <p className="text-sm mt-2">Spinach Leaf</p>
+                            </div>
+                            <div className="text-center">
+                              <img src="/path-to-pumpkin.png" alt="Pumpkin Leaf" className="w-16 h-16 mx-auto rounded-full" />
+                              <p className="text-sm mt-2">Pumpkin Leaf</p>
+                            </div>
+                            <div className="text-center">
+                              <img src="/path-to-spring-onions.png" alt="Spring Onions" className="w-16 h-16 mx-auto rounded-full" />
+                              <p className="text-sm mt-2">Spring Onions</p>
+                            </div>
+                            <div className="text-center">
+                              <img src="/path-to-bitter-leaf.png" alt="Bitter Leaf" className="w-16 h-16 mx-auto rounded-full" />
+                              <p className="text-sm mt-2">Bitter Leaf</p>
+                            </div>
+                            <div className="text-center">
+                              <img src="/path-to-tomatoes.png" alt="Tomatoes" className="w-16 h-16 mx-auto rounded-full" />
+                              <p className="text-sm mt-2">Tomatoes</p>
+                            </div>
+                            <div className="text-center">
+                              <img src="/path-to-water-leaf.png" alt="Water Leaf" className="w-16 h-16 mx-auto rounded-full" />
+                              <p className="text-sm mt-2">Water Leaf</p>
+                            </div>
+                            <div className="text-center">
+                              <img src="/path-to-carrot-cabbage.png" alt="Carrot & Cabbage" className="w-16 h-16 mx-auto rounded-full" />
+                              <p className="text-sm mt-2">Carrot & Cabbage</p>
+                            </div>
+                          </div>
+                        </div>
                       </li>
-                      <ul className='absolute left-20 bottom-0'>
-                        <li className='p-2'><Link to="" >Customer</Link></li>
-                        <li className='p-2'><Link to="" >Farmer</Link></li>
-                        </ul>
-                      <li className="p-2 hover:bg-[#FFBD00] rounded-b-lg">
-                        <Link to="/signup">Sign Up</Link>
+                      {/* Fruits */}
+                      <li className="flex items-center justify-between hover:text-green-600 cursor-pointer">
+                        <span>Fruits</span>
+                        <span>&gt;</span>
+                      </li>
+                      {/* Spices */}
+                      <li className="flex items-center justify-between hover:text-green-600 cursor-pointer">
+                        <span>Spices</span>
+                        <span>&gt;</span>
+                      </li>
+                      {/* Tubers */}
+                      <li className="flex items-center justify-between hover:text-green-600 cursor-pointer">
+                        <span>Tubers</span>
+                        <span>&gt;</span>
+                      </li>
+                      {/* Soups */}
+                      <li className="flex items-center justify-between hover:text-green-600 cursor-pointer">
+                        <span>Soups</span>
+                        <span>&gt;</span>
                       </li>
                     </ul>
-                  )}
+                  </div>
+                </li>
+                <li className="text-white p-[10px] relative group">
+                  <button className="cursor-pointer">Sign Up/Login</button>
+                  {/* Dropdown Menu */}
+                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 hidden group-hover:block bg-white text-black rounded-lg shadow-lg w-[300px]">
+                    {/* Arrow */}
+                    <div className="absolute top-[-8px] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45"></div>
+                    <div className="flex justify-between p-4">
+                      {/* Left Section: Login and Sign Up */}
+                      <ul className="space-y-2">
+                        <li className="hover:text-green-600 cursor-pointer">
+                          <Link to="/login">Login</Link>
+                        </li>
+                        <li className="hover:text-green-600 cursor-pointer">
+                          <Link to="/signup">Sign Up</Link>
+                        </li>
+                      </ul>
+                      {/* Right Section: Customer and Farmer */}
+                      <ul className="space-y-4 text-right">
+                        <li>
+                          <Link to="/customer" className="font-bold text-gray-700 hover:text-green-600">
+                            Customer
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to="/login" className="font-bold text-gray-700 hover:text-green-600">
+                            Farmer
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </li>
                 <li className="text-white p-[10px]">
                   <Link>Support</Link>
@@ -96,12 +176,44 @@ const Navbar = () => {
                   <img className="w-[20px]" src={profile} alt="Profile" />
                 </button>
                 {isDropdownOpen && (
-                  <ul className="absolute right-0 mt-2 bg-[rgba(255,255,255,0.8)] text-black rounded-lg shadow-lg">
-                    <li className="p-2 hover:bg-[#4CAF50] rounded-t-lg">
-                      <Link to="/login">Login</Link>
+                  <ul className="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-lg w-40">
+                    <li className="flex items-center p-2 hover:bg-[#F4E3B2] rounded-t-lg cursor-pointer">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="w-5 h-5 mr-2 text-[#4CAF50]"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.75 9V5.25a2.25 2.25 0 00-2.25-2.25h-3a2.25 2.25 0 00-2.25 2.25V9m-3 0h12m-6 0v6m0 0h3m-3 0H9"
+                        />
+                      </svg>
+                      <Link to="/signup" className="text-sm font-medium text-black">
+                        Sign Up
+                      </Link>
                     </li>
-                    <li className="p-2 hover:bg-[#4CAF50] rounded-b-lg">
-                      <Link to="/signup">Sign Up</Link>
+                    <li className="flex items-center p-2 hover:bg-[#F4E3B2] rounded-b-lg cursor-pointer">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="w-5 h-5 mr-2 text-[#4CAF50]"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M15.75 9V5.25a2.25 2.25 0 00-2.25-2.25h-3a2.25 2.25 0 00-2.25 2.25V9m-3 0h12m-6 0v6m0 0h3m-3 0H9"
+                        />
+                      </svg>
+                      <Link to="/login" className="text-sm font-medium text-black">
+                        Log In
+                      </Link>
                     </li>
                   </ul>
                 )}

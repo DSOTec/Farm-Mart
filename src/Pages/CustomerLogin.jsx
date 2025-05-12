@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const LoginPage = () => {
+const CustomerLogin = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -25,13 +25,13 @@ const LoginPage = () => {
       storedUser.password === formData.password
     ) {
       console.log('Login successful');
-      navigate('/dashboard'); // Navigate to Dashboard
+      navigate('/'); // Navigate to Dashboard
     } else {
       alert('Invalid email or password');
     }
   };
 
-  // Slideshow Logic
+  // Carousel Logic
   const images = [
     { src: '/login.png', caption: 'Fresh farm produce delivered to your doorstep.' },
     { src: '/login2.png', caption: 'Experience the best farm-to-table service.' },
@@ -49,7 +49,7 @@ const LoginPage = () => {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
-      {/* Left Section: Slideshow */}
+      {/* Left Section: Carousel */}
       <div className="hidden md:block w-1/2 bg-cover bg-center relative">
         <div
           className="absolute inset-0 bg-cover bg-center transition-all duration-500"
@@ -85,7 +85,7 @@ const LoginPage = () => {
             </svg>
           </button>
 
-          <h2 className="text-3xl font-bold text-gray-800 mb-4">Welcome Back, wonderful farmer!</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-4">Welcome Back, wonderful customer! </h2>
           <p className="text-gray-600 mb-6">Kindly log in to your account by providing the info below</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -169,12 +169,12 @@ const LoginPage = () => {
 
           <p className="text-sm text-center text-gray-600 mt-4">
             Don't have an Account?{' '}
-            <Link to="/signup" className="text-green-500 hover:underline">
-              Sign UP
+            <Link to="/CustomerSignUp" className="text-green-500 hover:underline">
+              Sign Up
             </Link>
           </p>
           <p className="text-sm text-center text-gray-600 mt-2">
-            <Link to="/customer" className="text-green-500 hover:underline flex items-center justify-center">
+            <Link to="/login" className="text-green-500 hover:underline flex items-center justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -198,4 +198,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default CustomerLogin;

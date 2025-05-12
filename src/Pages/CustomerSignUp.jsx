@@ -20,7 +20,7 @@ const SignupPage = () => {
     // Save user data to localStorage
     localStorage.setItem('user', JSON.stringify(formData));
     alert('Signup successful! You can now log in.');
-    navigate('/login'); // Redirect to login page
+    navigate('/customer'); // Redirect to login page
   };
 
   // Slideshow Logic
@@ -144,7 +144,7 @@ const SignupPage = () => {
           {/* Footer */}
           <p className="text-sm text-center text-gray-600 mt-6">
             Already have an account?{' '}
-            <Link to="/login" className="text-green-500 hover:underline">
+            <Link to="/customer" className="text-green-500 hover:underline">
               Log in
             </Link>
           </p>
