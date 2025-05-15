@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'; // Import useNavigate
 import items from '../Data/items'; // Import the items array
 import { FaArrowLeft, FaShoppingCart, FaSearch } from 'react-icons/fa'; // Import icons
+import vegImg from '../assets/categories/vegImg.png'; // replace with actual path
+import fruitImg from '../assets/categories/fruitImg.png'; // replace with actual path
+import spiceImg from '../assets/categories/spiceImg.png'; // replace with actual path
+import tuberImg from '../assets/categories/tuberImg.png'; // replace with actual path
+import soupImg from '../assets/categories/soupImg.png'; // replace with actual path
 
 const Farmitems = () => {
   const location = useLocation(); // Get the current location
@@ -58,9 +63,9 @@ const Farmitems = () => {
 
   return (
     <>
-      <div className="px-4 py-4">
+      
         {/* Top Bar */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between pt-4 pl-[4%] pr-[4%] mb-6">
           {/* Back Arrow Icon */}
           <button
             onClick={goToLandingPage} // Navigate to Landing Page
@@ -77,18 +82,18 @@ const Farmitems = () => {
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)} // Update search input
               placeholder="Search for items..."
-              className="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-[98%] p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             />
           </div>
 
           {/* Cart Icon */}
           <button
             onClick={goToCart} // Navigate to Cart page
-            className="relative text-gray-700 hover:text-green-600"
+            className="relative right-4 text-[#4CAF50] font-[700] hover:text-green-600"
           >
-            <FaShoppingCart size={24} />
+            <FaShoppingCart size={24}  />
             {cart.length > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
+              <span className="absolute -top-2 -right-2 bg-[#FFC107] text-white text-xs rounded-full px-2">
                 {cart.length}
               </span>
             )}
@@ -99,19 +104,19 @@ const Farmitems = () => {
         <h1 className="text-2xl font-bold mb-4 text-center">
           Search Results for "{searchInput}"
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 pl-[4%] pr-[4%] md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredItems.length > 0 ? (
             filteredItems.map((item) => (
               <div
                 key={item.id}
-                className="border border-gray-300 rounded-lg p-4 shadow-md bg-white"
+                className="border border-gray-300  p-4 shadow-md bg-white"
               >
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-90 h-40 object-cover rounded-md mb-4"
+                  className="w-full h-70 object-cover mb-4"
                 />
-                <h2 className="text-lg font-bold mb-2">{item.title}</h2>
+                <h2 className="text-[16px] text-[#4CAF50] font-[700] mb-2">{item.title}</h2>
                 <p className="text-gray-600 mb-2">Farmer: {item.farmer}</p>
                 <p className="text-gray-600 mb-2">
                   Remaining: {item.remaining}
@@ -121,7 +126,7 @@ const Farmitems = () => {
                 </p>
                 <button
                   onClick={() => handleAddToCart(item)} // Add item to cart
-                  className="bg-[#4CAF50] text-white px-4 py-2 rounded-lg hover:bg-[#45a049]"
+                  className="bg-[#FFC107]  px-4 py-2 rounded-[10px] w-[60%]  hover:bg-[#45a049]"
                 >
                   Add to Cart
                 </button>
@@ -133,6 +138,44 @@ const Farmitems = () => {
             </p>
           )}
         </div>
+        <div className="px-4 py-4">
+        {/* Discover the Categories Section */}
+        <h2 className="text-[28px] pl-[4%] font-bold text-left mb-6 text-gray-800">
+          Discover the Categories
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6 mb-10">
+          <div className="flex flex-col  overflow-hidden shadow border-none">
+            <img src={vegImg} alt="Vegetables" className="h-80 w-full object-cover" />
+            <div className="bg-green-500 py-4">
+              <p className="text-center text-xl font-bold text-gray-900">Vegetables</p>
+            </div>
+          </div>
+          <div className="flex flex-col overflow-hidden shadow border-none">
+            <img src={fruitImg} alt="Fruits" className="h-80 w-full object-cover" />
+            <div className="bg-green-500 py-4">
+              <p className="text-center text-xl font-bold text-gray-900">Fruits</p>
+            </div>
+          </div>
+          <div className="flex flex-col overflow-hidden shadow border-none">
+            <img src={spiceImg} alt="Spices" className="h-80 w-full object-cover" />
+            <div className="bg-green-500 py-4">
+              <p className="text-center text-xl font-bold text-gray-900">Spices</p>
+            </div>
+          </div>
+          <div className="flex flex-col overflow-hidden shadow border-none">
+            <img src={tuberImg} alt="Tubers" className="h-80 w-full object-cover" />
+            <div className="bg-green-500 py-4">
+              <p className="text-center text-xl font-bold text-gray-900">Tubers</p>
+            </div>
+          </div>
+          <div className="flex flex-col overflow-hidden shadow border-none">
+            <img src={soupImg} alt="Soups" className="h-80 w-full object-cover" />
+            <div className="bg-green-500 py-4">
+              <p className="text-center text-xl font-bold text-gray-900">Soups</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </>
   );

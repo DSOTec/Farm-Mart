@@ -97,7 +97,10 @@ const Cart = () => {
                   <tbody>
                     {cartItems.map((item) => (
                       <tr key={item.id}>
-                        <td className="border border-gray-300 px-4 py-2">{item.title}</td>
+                        <div className='flex justify-center items-center p-2'>
+                        <td> <img className='w-[100px] float-left rounded-[5px] ' src={item.image} /></td>
+                        <td className=" px-4 py-2 text-[#4CAF50] font-[500]"> {item.title}</td>
+                        </div>
                         <td className="border border-gray-300 px-4 py-2 text-center">
                           <input
                             type="number"
@@ -136,7 +139,7 @@ const Cart = () => {
         </div>
 
         {/* Right Section: Order Summary */}
-        <div className="bg-green-100 p-4 lg:p-6 rounded-lg shadow-lg">
+        <div className="bg-[#4CAF50B2] p-4 lg:p-6 rounded-lg shadow-lg">
           <h2 className="text-xl font-bold mb-4">Order Summary</h2>
           <div className="mb-4">
             <p className="flex justify-between">
@@ -166,12 +169,12 @@ const Cart = () => {
                 id="promoCode"
                 value={promoCode}
                 onChange={(e) => setPromoCode(e.target.value)}
-                className="flex-1 p-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="flex-1 p-2 border border-gray-300 bg-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                 placeholder="Enter promo code"
               />
               <button
                 onClick={applyPromoCode}
-                className="bg-green-500 text-white px-4 rounded-r-lg hover:bg-green-600"
+                className="bg-[#FFC107]  px-4 rounded-r-lg hover:bg-green-600"
               >
                 Apply
               </button>
@@ -179,7 +182,7 @@ const Cart = () => {
           </div>
           <button
             onClick={handleCheckout}
-            className="w-full bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600"
+            className="w-full bg-[#FFC107]  py-2 px-4 rounded-lg hover:bg-green-600"
           >
             Check Out
           </button>

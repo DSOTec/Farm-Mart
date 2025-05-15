@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SuccessPage from './Successpage';
 
 const PaymentPage = ({ isOpen, onClose, grandTotal }) => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const PaymentPage = ({ isOpen, onClose, grandTotal }) => {
   });
 
   const [paymentMethod, setPaymentMethod] = useState('Card Payment'); // Default payment method
+  const [isSuccessOpen, setIsSuccessOpen] = useState(false); // State to control success popup
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,8 +26,7 @@ const PaymentPage = ({ isOpen, onClose, grandTotal }) => {
     console.log('Payment Details:', formData);
     alert('Payment processed successfully!');
     localStorage.removeItem('cart'); // Clear the cart
-    onClose(); // Close the modal
-    navigate('/success'); // Navigate to the SuccessPage
+    setIsSuccessOpen(true); // Open the success popup
   };
 
   if (!isOpen) return null; // Don't render the modal if it's not open
@@ -200,6 +201,13 @@ const PaymentPage = ({ isOpen, onClose, grandTotal }) => {
           </button>
         </form>
       </div>
+
+      {/* Success Popup */}
+      {isSuccessOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+          <SuccessPage onClose={() => setIsSuccessOpen(false)} />
+        </div>
+      )}
     </div>
   );
 };

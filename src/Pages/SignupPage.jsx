@@ -76,7 +76,7 @@ const SignupPage = () => {
           {/* Title */}
           <h2 className="text-3xl text-green-700 font-bold text-center mb-4">Create Your Account</h2>
           <p className="text-center text-gray-600 mb-8">
-            Join Farm Mart and start shopping for fresh farm produce today!
+            Join FarmMart and start selling your farm products today!
           </p>
 
           {/* Form */}
