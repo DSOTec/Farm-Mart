@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SuccessPage from './Successpage';
+import SuccessPage from '../Pages/SuccessPage.jsx';
 
 const PaymentPage = ({ isOpen, onClose, grandTotal }) => {
   const [formData, setFormData] = useState({
