@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import SuccessPage from '../Pages/SuccessPage.jsx';
-
 const PaymentPage = ({ isOpen, onClose, grandTotal }) => {
   const [formData, setFormData] = useState({
     email: '',
@@ -15,7 +13,7 @@ const PaymentPage = ({ isOpen, onClose, grandTotal }) => {
 
   const [paymentMethod, setPaymentMethod] = useState('Card Payment'); // Default payment method
   const [isSuccessOpen, setIsSuccessOpen] = useState(false); // State to control success popup
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
