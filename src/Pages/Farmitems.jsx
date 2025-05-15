@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'; // Import useNavigate
 import items from '../Data/items'; // Import the items array
 import { FaArrowLeft, FaShoppingCart, FaSearch } from 'react-icons/fa'; // Import icons

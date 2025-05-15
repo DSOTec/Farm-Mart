@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import categories from '../assets/categories.png';
 import profile from '../assets/profile.png';
 import support from '../assets/support.png';
@@ -16,16 +16,16 @@ import carrot from '../assets/Carrot.png';
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to toggle profile dropdown
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false); // State to toggle categories dropdown
-  const [userRole, setUserRole] = useState(null); // State to store user role
+  // Removed unused userRole state
   const [activeSubmenu, setActiveSubmenu] = useState(null); // State to toggle specific submenu
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     // Retrieve user data from localStorage
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-    if (storedUser) {
-      setUserRole(storedUser.role); // Set the user's role (Customer or Farmer)
-    }
+    // const storedUser = JSON.parse(localStorage.getItem('user'));
+    // if (storedUser) {
+    //   setUserRole(storedUser.role); // Set the user's role (Customer or Farmer)
+    // }
   }, []);
 
   const toggleDropdown = () => {
@@ -40,15 +40,6 @@ const Navbar = () => {
     setActiveSubmenu(activeSubmenu === submenu ? null : submenu); // Toggle specific submenu
   };
 
-  const handleLoginRedirect = () => {
-    if (userRole === 'Customer') {
-      navigate('/'); // Redirect to the landing page for Customers
-    } else if (userRole === 'Farmer') {
-      navigate('/dashboard'); // Redirect to the dashboard for Farmers
-    } else {
-      navigate('/login'); // Default to login page if no role is found
-    }
-  };
 
   return (
     <>
