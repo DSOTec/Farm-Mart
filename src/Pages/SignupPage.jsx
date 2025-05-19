@@ -5,6 +5,7 @@ const SignupPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phonenumber: '',
     password: '',
   });
 
@@ -47,13 +48,13 @@ const SignupPage = () => {
           {/* Back Arrow */}
           <button
             onClick={() => navigate('/')} // Navigate to the home page
-            className="absolute top-4 left-4 text-green-600 hover:text-green-800 transition duration-300"
+            className="absolute top-4 left-4 text-red-600 bg-[#D9D9D9] p-3 rounded-[30px] hover:p-4  hover:text-green-800 transition duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth={2}
+              strokeWidth={5}
               stroke="currentColor"
               className="w-6 h-6"
             >
@@ -115,6 +116,22 @@ const SignupPage = () => {
               />
             </div>
 
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                id="phonenumber"
+                name="phonenumber"
+                value={formData.phone}
+                onChange={handleChange}
+                className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Enter your phone number"
+                required
+              />
+            </div>
+
             {/* Password Input */}
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">
@@ -152,12 +169,26 @@ const SignupPage = () => {
       </div>
 
       {/* Right Section: Slideshow */}
-      <div className="hidden md:block w-1/2 bg-cover bg-center relative">
+      <div className="hidden md:block w-1/2 bg-cover bg-center relative overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center transition-all duration-500"
-          style={{ backgroundImage: `url(${images[currentImageIndex].src})` }}
-        ></div>
-        <div className="absolute bottom-8 left-8 text-white">
+          className="absolute inset-0 flex transition-transform duration-700"
+          style={{
+            width: `${images.length * 100}%`,
+            transform: `translateX(-${currentImageIndex * (100 / images.length)}%)`
+          }}
+        >
+          {images.map((img, idx) => (
+            <div
+              key={idx}
+              className="h-full w-full flex-shrink-0 bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${img.src})`,
+                width: `${100 / images.length}%`
+              }}
+            />
+          ))}
+        </div>
+        <div className="absolute bottom-8 left-8 text-white z-10">
           <p className="text-lg font-semibold">{images[currentImageIndex].caption}</p>
         </div>
       </div>

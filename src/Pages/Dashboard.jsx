@@ -61,10 +61,10 @@ const Dashboard = () => {
       {/* Sidebar */}
       <aside
         className={`
-          fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg p-6 transition-transform duration-200
+          fixed inset-y-0 left-0 z-50 w-64 h-[150vh] bg-white shadow-lg p-6 transition-transform duration-200
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 md:w-1/5 md:block
         `}
-        style={{ maxHeight: '100vh', overflowY: 'auto' }}
+        style={{ maxHeight: '150vh', overflowY: 'auto' }}
       >
         {/* Close button on mobile */}
         <button
@@ -74,25 +74,44 @@ const Dashboard = () => {
         >
           <FaTimes />
         </button>
-        <div className="mb-6 text-center mt-8 md:mt-0">
-          <FaUserCircle className="text-4xl text-gray-600 mx-auto" />
-          <h3 className="text-lg font-bold text-gray-800">{user?.name || 'Abo Farms'}</h3>
-          <p className="text-sm text-gray-600">{user?.email || 'abo@farmmart.com'}</p>
-        </div>
-        <ul className="space-y-4">
-          <li className="text-green-600 font-bold">Dashboard</li>
-          <li className="text-gray-700 hover:text-green-600 cursor-pointer">Stocks</li>
-          <li className="text-gray-700 hover:text-green-600 cursor-pointer">Listings</li>
-          <li className="text-gray-700 hover:text-green-600 cursor-pointer">Orders</li>
-          <li className="text-gray-700 hover:text-green-600 cursor-pointer">Sales</li>
-          <li className="text-gray-700 hover:text-green-600 cursor-pointer">Alerts</li>
+  <div className="flex items-center bg-white rounded-full shadow border border-gray-200 w-[220px] px-1 py-1 mb-6 mt-8 md:mt-0 md:w-[250px]">
+  <img
+    src={user?.photoURL || "https://randomuser.me/api/portraits/men/32.jpg"}
+    alt="Profile"
+    className="w-12 h-12 rounded-full object-cover mr-3"
+  />
+  <div className="flex-1">
+    <h3 className="text-base font-bold text-gray-900 leading-tight">{user?.name || 'Abo Farms'}</h3>
+    <p className="text-sm text-gray-600">{user?.email || 'abisolaenny@gmail.com'}</p>
+  </div>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+    stroke="currentColor"
+    className="w-6 h-6 text-gray-500 ml-2"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+  </svg>
+</div>
+        <h5 className='font-bold pl-3 pb-6'>Menu</h5>
+        <ul className="space-y-10 pl-3 ">
+          <li className="text-green-600 text-[18px] font-bold">Dashboard</li>
+          <li className="text-gray-700 text-[18px] font-[600]  hover:text-green-600 cursor-pointer">Stocks</li>
+          <li className="text-gray-700 text-[18px] font-[600] hover:text-green-600 cursor-pointer">Listings</li>
+          <li className="text-gray-700 text-[18px] font-[600] hover:text-green-600 cursor-pointer">Orders</li>
+          <li className="text-gray-700 text-[18px] font-[600] hover:text-green-600 cursor-pointer">Sales</li>
+          <li className="text-gray-700 text-[18px] font-[600] hover:text-green-600 cursor-pointer">Alerts</li>
         </ul>
         <hr className="my-6" />
-        <ul className="space-y-4">
-          <li className="text-gray-700 hover:text-green-600 cursor-pointer">Help & Support</li>
-          <li className="text-gray-700 hover:text-green-600 cursor-pointer">Report a Problem</li>
+        <h6 className='font-bold pl-3 pb-6'>Other menu</h6>
+        <ul className="space-y-10">
+          <li className="text-gray-700 font-[600]  hover:text-green-600 cursor-pointer">Help & Support</li>
+          <li className="text-gray-700 font-[600] hover:text-green-600 cursor-pointer">Report a Problem</li>
+          <ul>
           <li
-            className="text-red-500 hover:text-red-600 cursor-pointer"
+            className="text-[red] font-[700] pt-20 hover:text-red-600  cursor-pointer"
             onClick={() => {
               localStorage.removeItem('user');
               navigate('/login');
@@ -100,6 +119,7 @@ const Dashboard = () => {
           >
             Logout
           </li>
+          </ul>
         </ul>
       </aside>
 

@@ -5,6 +5,7 @@ const SignupPage = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phonenumber: '',
     password: '',
   });
 
@@ -113,6 +114,22 @@ const SignupPage = () => {
                 onChange={handleChange}
                 className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                 placeholder="Enter your email"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                id="phonenumber"
+                name="phonenumber"
+                value={formData.phone}
+                onChange={handleChange}
+                className="w-full mt-2 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Enter your phone number"
                 required
               />
             </div>

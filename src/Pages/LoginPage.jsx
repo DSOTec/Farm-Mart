@@ -35,7 +35,7 @@ const LoginPage = () => {
     if (isValid) {
       navigate('/dashboard');
     } else {
-      alert('Invalid credentials');
+      alert('Invalid details');
     }
   };
 
@@ -58,11 +58,24 @@ const LoginPage = () => {
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
       {/* Left Section: Slideshow */}
-      <div className="hidden md:block w-1/2 bg-cover bg-center relative">
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-all duration-500"
-          style={{ backgroundImage: `url(${images[currentImageIndex].src})` }}
-        ></div>
+      <div className="hidden md:block w-1/2 bg-cover bg-center relative overflow-hidden">
+        <div className="absolute inset-0 flex transition-transform duration-700"
+          style={{
+            width: `${images.length * 100}%`,
+            transform: `translateX(-${currentImageIndex * (100 / images.length)}%)`
+          }}
+        >
+          {images.map((img, idx) => (
+            <div
+              key={idx}
+              className="h-full w-full flex-shrink-0 bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${img.src})`,
+                width: `${100 / images.length}%`
+              }}
+            />
+          ))}
+        </div>
         <div className="absolute bottom-8 left-8 text-white">
           <p className="text-lg font-semibold">{images[currentImageIndex].caption}</p>
           <p className="mt-2 font-bold">Rachel</p>
@@ -75,7 +88,7 @@ const LoginPage = () => {
         <div className="w-full max-w-md">
           <button
             onClick={() => navigate('/')} // Navigate to the home page
-            className="text-[#4CAF50] hover:text-green-900 mb-4"
+            className="absolute top-4 left-4 text-red-600 bg-[#D9D9D9] p-3 rounded-[30px] hover:p-4  hover:text-green-800 transition duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
