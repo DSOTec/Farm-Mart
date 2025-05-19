@@ -30,9 +30,11 @@ const SignupPage = () => {
     { src: '/login3.png', caption: 'Join FarmMart and shop with ease.' },
   ];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [slideDirection, setSlideDirection] = useState('right');
 
   useEffect(() => {
     const interval = setInterval(() => {
+      setSlideDirection('right');
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 5000); // Change image every 5 seconds
 
@@ -47,13 +49,13 @@ const SignupPage = () => {
           {/* Back Arrow */}
           <button
             onClick={() => navigate('/')} // Navigate to the home page
-            className="absolute top-4 left-4 text-green-600 hover:text-green-800 transition duration-300"
+            className="absolute top-4 left-4 text-red-600 bg-[#D9D9D9] p-3 rounded-[30px] hover:p-4  hover:text-green-800 transition duration-300"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
-              strokeWidth={2}
+              strokeWidth={5}
               stroke="currentColor"
               className="w-6 h-6"
             >
@@ -152,14 +154,27 @@ const SignupPage = () => {
       </div>
 
       {/* Right Section: Slideshow */}
-      <div className="hidden md:block w-1/2 bg-cover bg-center relative">
-        <div
-          className="absolute inset-0 bg-cover bg-center transition-all duration-500"
-          style={{ backgroundImage: `url(${images[currentImageIndex].src})` }}
-        ></div>
-        <div className="absolute bottom-8 left-8 text-white">
-          <p className="text-lg font-semibold">{images[currentImageIndex].caption}</p>
-        </div>
+      <div className="hidden md:block w-1/2 bg-gray-200 relative overflow-hidden">
+        {images.map((img, idx) => (
+          <div
+            key={img.src}
+            className={`
+              absolute inset-0 transition-transform duration-700 ease-in-out
+              ${idx === currentImageIndex ? 'translate-x-0 z-10' : 'translate-x-full z-0'}
+            `}
+            style={{
+              backgroundImage: `url(${img.src})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          >
+            {idx === currentImageIndex && (
+              <div className="absolute bottom-8 left-8 text-white bg-black/40 px-4 py-2 rounded">
+                <p className="text-lg font-semibold">{img.caption}</p>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

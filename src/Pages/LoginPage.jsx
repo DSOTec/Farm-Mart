@@ -4,9 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: '',
+    phone: '',
     password: '',
   });
-
+  const [showPassword, setShowPassword] = useState(false);
+  const [loginMethod, setLoginMethod] = useState('email'); // 'email' or 'phone'
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -15,19 +17,25 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Retrieve user data from localStorage
     const storedUser = JSON.parse(localStorage.getItem('user'));
 
-    if (
-      storedUser &&
-      storedUser.email === formData.email &&
-      storedUser.password === formData.password
-    ) {
-      console.log('Login successful');
-      navigate('/dashboard'); // Navigate to Dashboard
+    let isValid = false;
+    if (loginMethod === 'email') {
+      isValid =
+        storedUser &&
+        storedUser.email === formData.email &&
+        storedUser.password === formData.password;
     } else {
-      alert('Invalid email or password');
+      isValid =
+        storedUser &&
+        storedUser.phone === formData.phone &&
+        storedUser.password === formData.password;
+    }
+
+    if (isValid) {
+      navigate('/dashboard');
+    } else {
+      alert('Invalid credentials');
     }
   };
 
@@ -88,23 +96,69 @@ const LoginPage = () => {
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Welcome Back, wonderful farmer!</h2>
           <p className="text-gray-600 mb-6">Kindly log in to your account by providing the info below</p>
 
+          {/* Tabs for login method */}
+          <div className="flex mb-6">
+            <button
+              type="button"
+              className={`flex-1 py-2 rounded-l-lg font-semibold border-b-2 ${
+                loginMethod === 'email'
+                  ? 'text-green-600 border-green-600'
+                  : 'text-gray-700 border-transparent'
+              }`}
+              onClick={() => setLoginMethod('email')}
+              style={{ background: 'none' }}
+            >
+              Email Address
+            </button>
+            <button
+              type="button"
+              className={`flex-1 py-2 rounded-r-lg font-semibold border-b-2 ${
+                loginMethod === 'phone'
+                  ? 'text-green-600 border-green-600'
+                  : 'text-gray-700 border-transparent'
+              }`}
+              onClick={() => setLoginMethod('phone')}
+              style={{ background: 'none' }}
+            >
+              Phone Number
+            </button>
+          </div>
+
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Email Input */}
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Enter your Email"
-                required
-              />
-            </div>
+            {/* Email or Phone Input */}
+            {loginMethod === 'email' ? (
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  placeholder="Enter your Email"
+                  required
+                />
+              </div>
+            ) : (
+              <div>
+                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  placeholder="Enter your Phone Number"
+                  required
+                />
+              </div>
+            )}
 
             {/* Password Input */}
             <div>
@@ -113,7 +167,7 @@ const LoginPage = () => {
               </label>
               <div className="relative">
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
                   value={formData.password}
@@ -124,22 +178,23 @@ const LoginPage = () => {
                 />
                 <button
                   type="button"
-                  className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                  className="absolute top-3 right-2 text-gray-500 hover:text-gray-700"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  tabIndex={-1}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="currentColor"
-                    className="w-5 h-5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15 12h.01M9 12h.01M12 12h.01M9 16h6M9 8h6"
-                    />
-                  </svg>
+                  {showPassword ? (
+                    // Eye-off icon
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.875 18.825A10.05 10.05 0 0112 19c-5.523 0-10-7-10-7a17.299 17.299 0 013.153-3.905m3.197-2.197A9.956 9.956 0 0112 5c5.523 0 10 7 10 7a17.299 17.299 0 01-4.43 5.385M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 3l18 18" />
+                    </svg>
+                  ) : (
+                    // Eye icon
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                  )}
                 </button>
               </div>
             </div>
@@ -166,14 +221,14 @@ const LoginPage = () => {
               Log in
             </button>
           </form>
-
+          <div className='flex justify-between items-center'>
           <p className="text-sm text-center text-gray-600 mt-4">
             Don't have an Account?{' '}
             <Link to="/signup" className="text-green-500 hover:underline">
-              Sign UP
+              Sign Up
             </Link>
           </p>
-          <p className="text-sm text-center text-gray-600 mt-2">
+          <p className="text-sm text-center text-gray-600 mt-5">
             <Link to="/customer" className="text-green-500 hover:underline flex items-center justify-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -192,6 +247,7 @@ const LoginPage = () => {
               Switch Account
             </Link>
           </p>
+          </div>
         </div>
       </div>
     </div>

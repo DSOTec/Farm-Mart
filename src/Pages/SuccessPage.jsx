@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import successIcon from '../assets/successful.png'; // Replace with the actual path to your success icon
 
 const SuccessPage = ({ onClose }) => {
@@ -10,7 +10,7 @@ const SuccessPage = ({ onClose }) => {
   const amountPaid = location.state?.amount || 0; // Default to 0 if no amount is passed
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-transparent bg-opacity-50 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white bg-opacity-60 backdrop-blur"> 
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md relative">
         {/* Close Button */}
         <button

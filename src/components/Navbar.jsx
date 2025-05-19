@@ -18,6 +18,7 @@ const Navbar = () => {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false); // State to toggle categories dropdown
   // Removed unused userRole state
   const [activeSubmenu, setActiveSubmenu] = useState(null); // State to toggle specific submenu
+  const [openDropdown, setOpenDropdown] = useState(null); // Add this at the top of your component
   // const navigate = useNavigate();
 
   useEffect(() => {
@@ -136,21 +137,77 @@ const Navbar = () => {
                 <li className="text-white p-[10px] relative group">
                   <button className="cursor-pointer">Sign Up/Login</button>
                   {/* Dropdown Menu */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 hidden group-hover:block bg-white text-black rounded-lg shadow-lg w-[240px]">
+                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 hidden group-hover:block bg-white text-black rounded-lg shadow-lg w-[270px] h-30">
                     {/* Arrow */}
                     <div className="absolute top-[-8px] left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45"></div>
                     <div className="flex justify-between p-4">
                       {/* Left Section: Login and Sign Up */}
-                      <ul className="space-y-4">
-                        <li className="hover:text-green-600 cursor-pointer">
-                         Login
-                        </li>
-                        <li className="hover:text-green-600 ">
+                      <ul className="space-y-2 ">
+                        {/* Login */}
+                        <li
+                          className="hover:text-green-600 hover:bg-[#FFC107] p-[10px] rounded-[10px] cursor-pointer relative"
+                          onClick={() => setOpenDropdown(openDropdown === 'login' ? null : 'login')}
+                        >
                           Sign Up
+                          <ul
+                            className={`absolute top-0 left-22 mt-0 bg-white rounded-lg shadow-lg w-20 space-y-1 ${
+                              openDropdown === 'login' ? 'block' : 'hidden'
+                            }`}
+                            style={{ minWidth: '150px' }}
+                          >
+                            <li>
+                              <Link
+                                to="/CustomerSignUp"
+                                className="font-bold text-gray-700 p-[10px] hover:text-green-600 hover:rounded-[10px] hover: cursor-pointer block"
+                              >
+                                Customer
+                              </Link>
+                            </li>
+                            <hr />
+                            <li>
+                              <Link
+                                to="/signup"
+                                className="font-bold text-gray-700 p-[10px] hover:text-green-600 hover:rounded-[10px] hover: cursor-pointer block"
+                              >
+                                Farmer
+                              </Link>
+                            </li>
+                          </ul>
+                        </li>
+                        {/* Sign Up */}
+                        <li
+                          className="hover:text-green-500 hover:bg-[#FFC107] p-[10px] rounded-[10px] cursor-pointer relative"
+                          onClick={() => setOpenDropdown(openDropdown === 'signup' ? null : 'signup')}
+                        >
+                          Log In
+                          <ul
+                            className={`absolute bottom-[-2px] left-22 mt-0 bg-white rounded-lg shadow-lg w-20 space-y-1 ${
+                              openDropdown === 'signup' ? 'block' : 'hidden'
+                            }`}
+                            style={{ minWidth: '150px' }}
+                          >
+                            <li>
+                              <Link
+                                to="/customer"
+                                className="font-bold text-gray-700 p-[10px] hover:text-green-600 hover:rounded-[10px]  cursor-pointer block"
+                              >
+                                Customer
+                              </Link>
+                            </li>
+                            <hr />
+                            <li>
+                              <Link
+                                to="/login"
+                                className="font-bold text-gray-700 p-[10px] hover:text-green-600 hover:rounded-[10px] cursor-pointer block"
+                              >
+                                Farmer
+                              </Link>
+                            </li>
+                          </ul>
                         </li>
                       </ul>
                       {/* Right Section: Customer and Farmer */}
-                      <ul className="space-y-4 text-right">
+                    {/* <ul className="space-y-4 text-right">
                         <li>
                           <Link to="/customer" className="font-bold text-gray-700 p-[10px]  hover:text-green-600 hover:rounded-[10px] hover:bg-[#FFC107] cursor-pointer">
                             Customer
@@ -161,7 +218,7 @@ const Navbar = () => {
                             Farmer
                           </Link>
                         </li>
-                      </ul>
+                      </ul> */}
                     </div>
                   </div>
                 </li>
