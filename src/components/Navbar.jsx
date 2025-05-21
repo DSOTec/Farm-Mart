@@ -17,8 +17,8 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to toggle profile dropdown
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false); // State to toggle categories dropdown
   // Removed unused userRole state
-  const [activeSubmenu, setActiveSubmenu] = useState(null); // State to toggle specific submenu
   const [openDropdown, setOpenDropdown] = useState(null); // Add this at the top of your component
+  const [activeSubmenu, setActiveSubmenu] = useState(null); // State to toggle specific submenu
   // const navigate = useNavigate();
 
   useEffect(() => {
@@ -60,17 +60,67 @@ const Navbar = () => {
             {/* Centered List Items */}
             <div className="hidden md:flex justify-center w-full">
               <ul className="flex list-none gap-8 font-[Poppins] bg-[rgba(0, 0, 0, 0.37)] text-center border-[1px] border-white rounded-[100px] shadow-lg px-4 py-2">
-                <li className="text-white p-[10px] relative group">
-                  <button className="cursor-pointer">Categories</button>
-                  {/* Main Dropdown */}
-                  <div className="absolute left-0 mt-2 hidden  group-hover:block bg-white text-black rounded-lg shadow-lg w-[220px] z-10">
-                    <ul className="space-y-2 p-4">
-                      {/* Vegetables */}
-                      <li className="flex items-center justify-between hover:text-green-600 cursor-pointer group relative">
-                        <span className="font-bold text-[#A68A00]">Vegetables</span>
-                        <span>&gt;</span>
-                        {/* Submenu */}
-                        <div className="absolute left-full top-0 hidden group-hover:block bg-white text-black rounded-lg shadow-lg w-[400px] p-4 z-10">
+                <li className="text-white p-[10px] relative">
+                  <button
+                    className="cursor-pointer"
+                    onClick={() => setOpenDropdown(openDropdown === 'categories' ? null : 'categories')}
+                  >
+                    Categories
+                  </button>
+                  {/* Main Dropdown and Submenu in same container */}
+                  {openDropdown === 'categories' && (
+                    <div
+                      className={`
+                        absolute left-0 mt-2 bg-white  text-black rounded-lg shadow-lg z-10 flex transition-all duration-300
+                        ${openDropdown === 'categories' ? 'w-[620px]' : 'w-[220px]'}
+                      `}
+                      style={{
+                        width: openDropdown === 'categories' ? '620px' : '220px',
+                        minWidth: openDropdown === 'categories' ? '620px' : '220px',
+                        maxWidth: openDropdown === 'categories' ? '620px' : '220px',
+                      }}
+                    >
+                      {/* Main Dropdown */}
+                      <ul className="space-y-2 p-4 w-[220px]">
+                        <li
+                          className="flex items-center justify-between hover:text-green-600 cursor-pointer font-bold text-[#A68A00] relative"
+                          onClick={() => setActiveSubmenu(activeSubmenu === 'Vegetables' ? null : 'Vegetables')}
+                        >
+                          <span>Vegetables</span>
+                          <span>&gt;</span>
+                        </li>
+                        <li
+                          className="flex items-center justify-between hover:text-green-600 cursor-pointer"
+                          onClick={() => setActiveSubmenu(activeSubmenu === 'Fruits' ? null : 'Fruits')}
+                        >
+                          <span>Fruits</span>
+                          <span>&gt;</span>
+                        </li>
+                        <li
+                          className="flex items-center justify-between hover:text-green-600 cursor-pointer"
+                          onClick={() => setActiveSubmenu(activeSubmenu === 'Spices' ? null : 'Spices')}
+                        >
+                          <span>Spices</span>
+                          <span>&gt;</span>
+                        </li>
+                        <li
+                          className="flex items-center justify-between hover:text-green-600 cursor-pointer"
+                          onClick={() => setActiveSubmenu(activeSubmenu === 'Tubers' ? null : 'Tubers')}
+                        >
+                          <span>Tubers</span>
+                          <span>&gt;</span>
+                        </li>
+                        <li
+                          className="flex items-center justify-between hover:text-green-600 cursor-pointer"
+                          onClick={() => setActiveSubmenu(activeSubmenu === 'Soups' ? null : 'Soups')}
+                        >
+                          <span>Soups</span>
+                          <span>&gt;</span>
+                        </li>
+                      </ul>
+                      {/* Submenu (visible only when a main item is clicked) */}
+                      {activeSubmenu === 'Vegetables' && (
+                        <div className="bg-white text-black rounded-lg shadow-lg w-[400px] p-4">
                           <div className="grid grid-cols-3 gap-4">
                             <div className="text-center">
                               <img src={pepper} alt="Pepper" className="w-16 h-16 mx-auto rounded-full" />
@@ -110,29 +160,10 @@ const Navbar = () => {
                             </div>
                           </div>
                         </div>
-                      </li>
-                      {/* Fruits */}
-                      <li className="flex items-center justify-between hover:text-green-600 cursor-pointer">
-                        <span>Fruits</span>
-                        <span>&gt;</span>
-                      </li>
-                      {/* Spices */}
-                      <li className="flex items-center justify-between hover:text-green-600 cursor-pointer">
-                        <span>Spices</span>
-                        <span>&gt;</span>
-                      </li>
-                      {/* Tubers */}
-                      <li className="flex items-center justify-between hover:text-green-600 cursor-pointer">
-                        <span>Tubers</span>
-                        <span>&gt;</span>
-                      </li>
-                      {/* Soups */}
-                      <li className="flex items-center justify-between hover:text-green-600 cursor-pointer">
-                        <span>Soups</span>
-                        <span>&gt;</span>
-                      </li>
-                    </ul>
-                  </div>
+                      )}
+                      {/* Add similar blocks for other submenus if needed */}
+                    </div>
+                  )}
                 </li>
                 <li className="text-white p-[10px] relative group">
                   <button className="cursor-pointer">Sign Up/Login</button>
