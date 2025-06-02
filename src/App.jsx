@@ -16,7 +16,7 @@ import CustomerLogin from './Pages/CustomerLogin.jsx';
 import CustomerSignUp from './Pages/CustomerSignUp.jsx'
 import SuccessPage from './Pages/SuccessPage.jsx';
 import Product from './Pages/Product.jsx';
-import ErrorPage from './Pages/ErrorPage.jsx';
+import ErrorPage  from './Pages/ErrorPage.jsx';
 
 const App = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0); // State for the current image index

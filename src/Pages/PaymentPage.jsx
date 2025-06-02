@@ -204,35 +204,35 @@ const PaymentPage = ({ isOpen, onClose, grandTotal }) => {
         {paymentMethod === 'Bank Deposit' && (
           <div className="w-full h-[400px] flex items-center justify-center rounded-2xl bg-white border border-gray-200">
             {/* This is the blank page for Bank Deposit */}
-            <div className="text-left">
-            <p>Use the bank details above to make payment</p>
-              <h4 className="mt-4 text-lg font-medium text-gray-700">
+            <div className="text-left ">
+            <p className='text-[13px]  mt-10'>Use the bank details above to make payment</p>
+              <h4 className="mt-4 text-[16px] font-medium text-gray-700">
                 Please complete payment in <span className="font-bold text-red-600">05 :59 :47</span>
               </h4>
-              <p className="text-3xl font-semibold text-gray-800 mb-2">Account Number</p>
-              <p className="text-5xl font-extrabold text-gray-900 tracking-widest mb-4">984544673646334</p>
-              <p>Bank Name</p>
-              <h5>Kowope MFB</h5>
-              <p>Beneficiary Name</p>
-              <h5>Farm Mart</h5>
-              <p>Amount to pay</p>
-              <h4>₦{grandTotal.toLocaleString()}</h4>
-              <p>To avoid transaction failure, kindly make sure you pay the  exact amount</p>
-              <div>
-                <p>This page will automatically update when payment is received.</p>
-                <p>Need Help?</p>
+              <p className="text-[16px] mt-4 font-semibold text-gray-800 mb-2">Account Number</p>
+              <p className="text-[16px] font-extrabold text-gray-900 tracking-widest mb-4">984544673646334</p>
+              <p className='text-[13px]'>Bank Name</p>
+              <h5 className='text-[16px] mt-2 font-[700]'>Kowope MFB</h5>
+              <p className='text-[13px] mt-3'>Beneficiary Name</p>
+              <h5 className='[16px] mt-3 font-[700]'>Farm Mart</h5>
+              <p className='text-[13px] mt-3'>Amount to pay</p>
+              <h4 className='text-[16px] font-[700] mt-3'>₦{grandTotal.toLocaleString()}</h4>
+              <p className='text-[13px] mt-3 text-[#4CAF50]'>To avoid transaction failure, kindly make sure you pay the  exact amount</p>
+              <div className='flex justify-between items-center  text-[13px]'>
+                <p className='p-[10px]'>This page will automatically update when payment is received.</p>
+                <p className='p-[10px]'>Need Help?</p>
               </div>
             </div>
           </div>
         )}
 
         {paymentMethod === 'USSD' && (
-          <div className="w-full h-[400px] flex items-center justify-center rounded-2xl bg-white border border-gray-200">
+          <div className="w-full h-[400px]  justify-center rounded-2xl bg-white border border-gray-200">
             {/* You can add USSD instructions here if needed */}
             <div>
-              <p>Dial the USSD code below to make your payment </p>
-              <h3>* 343 * 12424 #</h3>
-              <button>I have  made my payment</button>
+              <p className='mx-5 my-5 text-[18px] font-[600]'>Dial the USSD code below to make your payment </p>
+              <h3 className='text-center text-[2rem] font-[800]'>* 343 * 12424 #</h3>
+              <button className='relative left-[25%] top-30 p-[10px] text-center w-90 border-2 text-[#4CAF50] border-[#4CAF50]'>I have  made my payment</button>
             </div>
           </div>
         )}
