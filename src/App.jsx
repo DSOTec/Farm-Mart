@@ -15,6 +15,7 @@ import PaymentPage from './Pages/PaymentPage.jsx';
 import CustomerLogin from './Pages/CustomerLogin.jsx';
 import CustomerSignUp from './Pages/CustomerSignUp.jsx'
 import SuccessPage from './Pages/SuccessPage.jsx';
+import Product from './Pages/Product.jsx';
 
 
 const App = () => {
@@ -56,6 +57,7 @@ const App = () => {
         <Route path="/customer" element={<CustomerLogin />} />
         <Route path='/CustomerSignUp' element={<CustomerSignUp />} />
         <Route path="/signup" element={<SignupPage />} /> {/* Signup route */}
+        <Route path="product" element={<Product />} />
         <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
       <Footer />

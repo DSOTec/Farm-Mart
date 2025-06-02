@@ -60,7 +60,14 @@ const Navbar = () => {
             {/* Centered List Items */}
             <div className="hidden md:flex justify-center w-full">
               <ul className="flex list-none gap-8 font-[Poppins] bg-[rgba(0, 0, 0, 0.37)] text-center border-[1px] border-white rounded-[100px] shadow-lg px-4 py-2">
-                <li className="text-white p-[10px] relative">
+                <li
+                  className="text-white p-[10px] relative hover:bg-[#C9BB5366] rounded-[20px]"
+                  onMouseEnter={() => setOpenDropdown('categories')}
+                  onMouseLeave={() => {
+                    setOpenDropdown(null);
+                    setActiveSubmenu(null);
+                  }}
+                >
                   <button
                     className="cursor-pointer"
                     onClick={() => setOpenDropdown(openDropdown === 'categories' ? null : 'categories')}
@@ -83,49 +90,65 @@ const Navbar = () => {
                       {/* Main Dropdown */}
                       <ul className="space-y-2 p-4 w-[220px]">
                         <li
-                          className="flex items-center justify-between hover:text-green-600 cursor-pointer font-bold text-[#A68A00] relative"
+                          className="flex items-center justify-between cursor-pointer font-bold hover:bg-[#C9BB5366] hover:p-[10px] rounded-[20px] relative"
+                          onMouseEnter={() => setActiveSubmenu('Vegetables')}
+                          onMouseLeave={() => setActiveSubmenu(null)}
                           onClick={() => setActiveSubmenu(activeSubmenu === 'Vegetables' ? null : 'Vegetables')}
                         >
                           <span>Vegetables</span>
                           <span>&gt;</span>
                         </li>
                         <li
-                          className="flex items-center justify-between hover:text-green-600 cursor-pointer"
+                          className="flex items-center justify-between hover:bg-[#C9BB5366] hover:p-[10px] rounded-[20px] cursor-pointer"
+                          onMouseEnter={() => setActiveSubmenu('Fruits')}
+                          onMouseLeave={() => setActiveSubmenu(null)}
                           onClick={() => setActiveSubmenu(activeSubmenu === 'Fruits' ? null : 'Fruits')}
                         >
                           <span>Fruits</span>
                           <span>&gt;</span>
                         </li>
                         <li
-                          className="flex items-center justify-between hover:text-green-600 cursor-pointer"
+                          className="flex items-center justify-between hover:bg-[#C9BB5366] hover:p-[10px] rounded-[20px] cursor-pointer"
+                          onMouseEnter={() => setActiveSubmenu('Spices')}
+                          onMouseLeave={() => setActiveSubmenu(null)}
                           onClick={() => setActiveSubmenu(activeSubmenu === 'Spices' ? null : 'Spices')}
                         >
                           <span>Spices</span>
                           <span>&gt;</span>
                         </li>
                         <li
-                          className="flex items-center justify-between hover:text-green-600 cursor-pointer"
+                          className="flex items-center justify-between hover:bg-[#C9BB5366] hover:p-[10px] rounded-[20px] cursor-pointer"
+                          onMouseEnter={() => setActiveSubmenu('Tubers')}
+                          onMouseLeave={() => setActiveSubmenu(null)}
                           onClick={() => setActiveSubmenu(activeSubmenu === 'Tubers' ? null : 'Tubers')}
                         >
                           <span>Tubers</span>
                           <span>&gt;</span>
                         </li>
                         <li
-                          className="flex items-center justify-between hover:text-green-600 cursor-pointer"
+                          className="flex items-center justify-between hover:bg-[#C9BB5366] hover:p-[10px] rounded-[20px] cursor-pointer"
+                          onMouseEnter={() => setActiveSubmenu('Soups')}
+                          onMouseLeave={() => setActiveSubmenu(null)}
                           onClick={() => setActiveSubmenu(activeSubmenu === 'Soups' ? null : 'Soups')}
                         >
                           <span>Soups</span>
                           <span>&gt;</span>
                         </li>
                       </ul>
-                      {/* Submenu (visible only when a main item is clicked) */}
+                      {/* Submenu (visible only when a main item is hovered or clicked) */}
                       {activeSubmenu === 'Vegetables' && (
-                        <div className="bg-white text-black rounded-lg shadow-lg w-[400px] p-4">
+                        <div
+                          className="bg-white text-black rounded-lg shadow-lg w-[400px] p-4"
+                          onMouseEnter={() => setActiveSubmenu('Vegetables')}
+                          onMouseLeave={() => setActiveSubmenu(null)}
+                        >
                           <div className="grid grid-cols-3 gap-4">
+                          <Link to="/product">
                             <div className="text-center">
                               <img src={pepper} alt="Pepper" className="w-16 h-16 mx-auto rounded-full" />
                               <p className="text-sm mt-2">Pepper</p>
                             </div>
+                            </Link>
                             <div className="text-center">
                               <img src={onions} alt="Onions" className="w-16 h-16 mx-auto rounded-full" />
                               <p className="text-sm mt-2">Onions</p>
@@ -165,7 +188,7 @@ const Navbar = () => {
                     </div>
                   )}
                 </li>
-                <li className="text-white p-[10px] relative group">
+                <li className="text-white p-[10px] relative group hover:bg-[#C9BB5366] rounded-[20px]">
                   <button className="cursor-pointer">Sign Up/Login</button>
                   {/* Dropdown Menu */}
                   <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 hidden group-hover:block bg-white text-black rounded-lg shadow-lg w-[270px] h-30">
@@ -253,7 +276,7 @@ const Navbar = () => {
                     </div>
                   </div>
                 </li>
-                <li className="text-white p-[10px]">
+                <li className="text-white p-[10px] hover:bg-[#C9BB5366] rounded-[20px]">
                   <Link>Support</Link>
                 </li>
               </ul>

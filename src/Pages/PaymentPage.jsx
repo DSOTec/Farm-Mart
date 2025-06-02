@@ -53,7 +53,7 @@ const PaymentPage = ({ isOpen, onClose, grandTotal }) => {
         />
 
         {/* Payment Method Selection */}
-        <div className="flex justify-center gap-4 mb-6">
+        <div className="flex justify-center gap-20  mb-6">
           {['Card Payment', 'Bank Deposit', 'USSD'].map((method) => (
             <button
               key={method}
@@ -70,134 +70,172 @@ const PaymentPage = ({ isOpen, onClose, grandTotal }) => {
         </div>
 
         {/* Payment Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email Address */}
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email Address
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-
-          {/* First Name and Last Name */}
-          <div className="flex gap-4">
-            <div className="flex-1">
-              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
-                First Name
+        {paymentMethod === 'Card Payment' && (
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Email Address */}
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email Address
               </label>
               <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                value={formData.firstName}
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="First Name"
+                placeholder="Enter your email"
                 required
               />
             </div>
-            <div className="flex-1">
-              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
-                Last Name
+
+            {/* First Name and Last Name */}
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  placeholder="First Name"
+                  required
+                />
+              </div>
+              <div className="flex-1">
+                <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  placeholder="Last Name"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Card Number */}
+            <div>
+              <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-700">
+                Card Number
               </label>
               <input
                 type="text"
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
+                id="cardNumber"
+                name="cardNumber"
+                value={formData.cardNumber}
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Last Name"
+                placeholder="Enter your card number"
                 required
               />
             </div>
-          </div>
 
-          {/* Card Number */}
-          <div>
-            <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-700">
-              Card Number
-            </label>
-            <input
-              type="text"
-              id="cardNumber"
-              name="cardNumber"
-              value={formData.cardNumber}
-              onChange={handleChange}
-              className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-              placeholder="Enter your card number"
-              required
-            />
-          </div>
+            {/* Expiry Date and CVC */}
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <label htmlFor="expiryDate" className="block text-sm font-medium text-gray-700">
+                  Expiry Date
+                </label>
+                <input
+                  type="text"
+                  id="expiryDate"
+                  name="expiryDate"
+                  value={formData.expiryDate}
+                  onChange={handleChange}
+                  className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  placeholder="MM/YY"
+                  required
+                />
+              </div>
+              <div className="flex-1">
+                <label htmlFor="cvc" className="block text-sm font-medium text-gray-700">
+                  CVC
+                </label>
+                <input
+                  type="text"
+                  id="cvc"
+                  name="cvc"
+                  value={formData.cvc}
+                  onChange={handleChange}
+                  className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+                  placeholder="CVC"
+                  required
+                />
+              </div>
+            </div>
 
-          {/* Expiry Date and CVC */}
-          <div className="flex gap-4">
-            <div className="flex-1">
-              <label htmlFor="expiryDate" className="block text-sm font-medium text-gray-700">
-                Expiry Date
+            {/* Billing Address */}
+            <div>
+              <label htmlFor="billingAddress" className="block text-sm font-medium text-gray-700">
+                Billing Address
               </label>
               <input
                 type="text"
-                id="expiryDate"
-                name="expiryDate"
-                value={formData.expiryDate}
+                id="billingAddress"
+                name="billingAddress"
+                value={formData.billingAddress}
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="MM/YY"
+                placeholder="Enter your billing address"
                 required
               />
             </div>
-            <div className="flex-1">
-              <label htmlFor="cvc" className="block text-sm font-medium text-gray-700">
-                CVC
-              </label>
-              <input
-                type="text"
-                id="cvc"
-                name="cvc"
-                value={formData.cvc}
-                onChange={handleChange}
-                className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="CVC"
-                required
-              />
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition duration-300 font-bold text-lg"
+            >
+              Pay ₦{grandTotal.toLocaleString()}
+            </button>
+          </form>
+        )}
+
+        {paymentMethod === 'Bank Deposit' && (
+          <div className="w-full h-[400px] flex items-center justify-center rounded-2xl bg-white border border-gray-200">
+            {/* This is the blank page for Bank Deposit */}
+            <div className="text-left">
+            <p>Use the bank details above to make payment</p>
+              <h4 className="mt-4 text-lg font-medium text-gray-700">
+                Please complete payment in <span className="font-bold text-red-600">05 :59 :47</span>
+              </h4>
+              <p className="text-3xl font-semibold text-gray-800 mb-2">Account Number</p>
+              <p className="text-5xl font-extrabold text-gray-900 tracking-widest mb-4">984544673646334</p>
+              <p>Bank Name</p>
+              <h5>Kowope MFB</h5>
+              <p>Beneficiary Name</p>
+              <h5>Farm Mart</h5>
+              <p>Amount to pay</p>
+              <h4>₦{grandTotal.toLocaleString()}</h4>
+              <p>To avoid transaction failure, kindly make sure you pay the  exact amount</p>
+              <div>
+                <p>This page will automatically update when payment is received.</p>
+                <p>Need Help?</p>
+              </div>
             </div>
           </div>
+        )}
 
-          {/* Billing Address */}
-          <div>
-            <label htmlFor="billingAddress" className="block text-sm font-medium text-gray-700">
-              Billing Address
-            </label>
-            <input
-              type="text"
-              id="billingAddress"
-              name="billingAddress"
-              value={formData.billingAddress}
-              onChange={handleChange}
-              className="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-              placeholder="Enter your billing address"
-              required
-            />
+        {paymentMethod === 'USSD' && (
+          <div className="w-full h-[400px] flex items-center justify-center rounded-2xl bg-white border border-gray-200">
+            {/* You can add USSD instructions here if needed */}
+            <div>
+              <p>Dial the USSD code below to make your payment </p>
+              <h3>* 343 * 12424 #</h3>
+              <button>I have  made my payment</button>
+            </div>
           </div>
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition duration-300 font-bold text-lg"
-          >
-            Pay ₦{grandTotal.toLocaleString()}
-          </button>
-        </form>
+        )}
       </div>
 
       {/* Success Popup */}

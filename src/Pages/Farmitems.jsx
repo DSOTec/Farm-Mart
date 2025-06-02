@@ -51,7 +51,7 @@ const Farmitems = () => {
     alert(`${item.title} has been added to your cart!`);
   };
 
-  // Navigate to the Cart page
+  // Navigate to the Cart
   const goToCart = () => {
     navigate('/cart');
   };
@@ -77,10 +77,11 @@ const Farmitems = () => {
           {/* Search Bar */}
           <div className="relative flex-1 mx-4">
             <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            {/* Update search input */}
             <input
               type="text"
               value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)} // Update search input
+              onChange={(e) => setSearchInput(e.target.value)}
               placeholder="Search for items..."
               className="w-[98%] p-3 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             />
@@ -109,7 +110,7 @@ const Farmitems = () => {
             filteredItems.map((item) => (
               <div
                 key={item.id}
-                className="border border-gray-300  p-4 shadow-md bg-white"
+                className="border border-gray-300 p-4 shadow-md bg-white flex flex-col items-center"
               >
                 <img
                   src={item.image}
@@ -125,8 +126,9 @@ const Farmitems = () => {
                   Price: ₦{item.price.toFixed(2)}
                 </p>
                 <button
-                  onClick={() => handleAddToCart(item)} // Add item to cart
-                  className="bg-[#FFC107]  px-4 py-2 rounded-[10px] w-[60%]  hover:bg-[#45a049]"
+                  onClick={() => handleAddToCart(item)}
+                  className="bg-[#FFC107] px-4 py-2 rounded-[10px] w-[60%] hover:bg-[#45a049] mx-auto block"
+                  style={{ marginTop: "auto" }}
                 >
                   Add to Cart
                 </button>
