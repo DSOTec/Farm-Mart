@@ -45,7 +45,7 @@ FarmMart is a Minimum Viable Product (MVP) designed to bridge the gap between sm
 - **Charts:** Chart.js (for dashboard analytics)
 
 ---
-
+<!--
 ## 📦 Getting Started
 
 ### Prerequisites
@@ -76,7 +76,7 @@ FarmMart is a Minimum Viable Product (MVP) designed to bridge the gap between sm
    ```
 
 4. **Open in your browser:**  
-   Visit [http://localhost:3000](http://localhost:3000)
+   Visit [http://localhost:3000](http://localhost:3000) -->
 
 ---
 
@@ -138,7 +138,7 @@ FarmMart is designed to work seamlessly on all devices.
   Add payment gateways for real transactions.
 
 ---
-
+<!--
 ## 🤝 Contributing
 
 Contributions are welcome!  
@@ -147,7 +147,7 @@ Contributions are welcome!
 3. Make your changes  
 4. Submit a pull request
 
----
+---  -->
 
 ## 📄 License
 
